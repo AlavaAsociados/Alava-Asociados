@@ -1129,6 +1129,35 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(tvScript);
   };
 
+  // 14.1 Inicialización Limpia del Mini Chart de TradingView (Previene errores de sintaxis en el HTML)
+  const initTradingViewMarketChart = () => {
+    const container = document.getElementById("tradingview-market-chart-container");
+    if (!container) return;
+    if (container.querySelector("script")) return;
+
+    const tvScript = document.createElement("script");
+    tvScript.type = "text/javascript";
+    tvScript.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+    tvScript.async = true;
+    tvScript.textContent = JSON.stringify({
+      symbol: "TVC:USOIL",
+      width: "100%",
+      height: 220,
+      locale: "es",
+      dateRange: "12M",
+      colorTheme: "dark",
+      isTransparent: true,
+      autosize: false,
+      largeChartUrl: "",
+      chartOnly: false,
+      noTimeScale: false,
+      trendLineColor: "rgba(16, 185, 129, 1)",
+      underLineColor: "rgba(16, 185, 129, 0.15)",
+      underLineBottomColor: "rgba(16, 185, 129, 0)"
+    });
+    container.appendChild(tvScript);
+  };
+
   // 15. Sistema Automático de Noticias Financieras de Ecuador (RSS a JSON vía fetch)
   const initEcuadorLiveNews = async () => {
     const newsGrid = document.getElementById("ecuador-news-grid");
@@ -1331,6 +1360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCurrencyConverter();
   initLiveDateBadge();
   initTradingViewTicker();
+  initTradingViewMarketChart();
   initFirebaseBackend();
   initEcuadorLiveNews();
 });

@@ -1411,14 +1411,14 @@
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.55), 0 0 20px rgba(16, 185, 129, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.tradingview-widget-container {
+.market-tradingview-wrapper .tradingview-widget-container {
   width: 100%;
   height: 46px;
   overflow: hidden;
   border-radius: inherit;
 }
 
-.tradingview-widget-container iframe {
+.market-tradingview-wrapper .tradingview-widget-container iframe {
   border: none !important;
   border-radius: inherit;
 }
@@ -2105,6 +2105,13 @@
   border-radius: 10px;
   background: rgba(10, 14, 20, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.market-chart-wrapper .tradingview-widget-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 @media (max-width: 1023px) {
