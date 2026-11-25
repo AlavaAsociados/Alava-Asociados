@@ -1,0 +1,704 @@
+/* ==========================================================================
+   GLOBAL.CSS - Estilos Globales, Variables, Reset, Componentes y Navegación
+   Tecnología: CSS3 Nativo (Sin frameworks)
+   Estilo: Fintech Moderno 100% Responsivo
+   Paleta: #121417 (Fondo Grafito), #1A1D21 (Tarjetas), #2A2E35 (Bordes),
+           #FFFFFF (Texto Principal), #A1A1AA (Texto Secundario),
+           #10B981 (Verde Esmeralda Sobrio)
+   ========================================================================== */
+
+/* 1. Variables de diseño en :root */
+:root {
+  /* Paleta Liquid Glass & Fintech */
+  --color-bg: #0A0D12;              /* Fondo ultra profundo con soporte para mallas líquidas */
+  --color-surface: rgba(20, 25, 33, 0.62);         /* Superficie de vidrio translúcido */
+  --color-surface-hover: rgba(28, 35, 47, 0.78);   /* Estado hover en vidrio líquido */
+  --color-surface-card: rgba(20, 25, 33, 0.58);    /* Tarjetas y módulos frosted glass */
+  --color-primary: #10B981;         /* Verde esmeralda vivo */
+  --color-primary-hover: #34D399;   /* Esmeralda luminoso para hover */
+  --color-primary-rgb: 16, 185, 129;
+  --color-secondary: #E4E4E7;       /* Blanco zinc elegante */
+  --color-secondary-rgb: 228, 228, 231;
+  --color-text: #FFFFFF;            /* Blanco puro para títulos */
+  --color-text-muted: #A1A1AA;      /* Gris zinc de alta legibilidad */
+  --color-border: rgba(255, 255, 255, 0.09);       /* Borde cristalino tenue */
+  --color-border-glass: rgba(255, 255, 255, 0.13); /* Refracción de borde de vidrio */
+  --color-border-hover: rgba(16, 185, 129, 0.55);  /* Iluminación de borde en hover */
+  --color-success: #10B981;         /* Éxito */
+  --color-danger: #EF4444;          /* Error */
+
+  /* Filtros y Efectos Liquid Glass (Frosted Glassmorphism) */
+  --glass-blur: blur(18px) saturate(180%);
+  --glass-blur-sm: blur(10px) saturate(160%);
+  --glass-blur-lg: blur(26px) saturate(190%);
+  --glass-specular: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  --glass-specular-hover: inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+
+  /* Tipografía y Espaciado */
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --max-width: 1120px;
+  --header-height: 72px;
+
+  /* Bordes, Sombras Líquidas y Transiciones */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 4px 18px 0 rgba(0, 0, 0, 0.38), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --shadow-md: 0 8px 32px 0 rgba(0, 0, 0, 0.48), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  --shadow-lg: 0 16px 48px -8px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  --transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. Reset Universal y Prevención de Desbordamiento */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  background-image: 
+    radial-gradient(circle at 12% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 88% 20%, rgba(14, 165, 233, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 50% 55%, rgba(16, 185, 129, 0.07) 0%, transparent 48%),
+    radial-gradient(circle at 18% 85%, rgba(99, 102, 241, 0.08) 0%, transparent 42%);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+main {
+  flex: 1; /* Permite que el footer se mantenga al final siempre */
+  width: 100%;
+  overflow-x: hidden;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3. Clases Utilitarias */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  box-sizing: border-box;
+}
+
+.section {
+  padding: 4.5rem 0;
+  width: 100%;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem auto;
+  padding: 0 0.5rem;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.1);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(var(--color-primary-rgb), 0.25);
+}
+
+.section-title {
+  font-size: clamp(1.85rem, 4vw + 0.5rem, 2.35rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.015em;
+  word-break: break-word;
+}
+
+.section-description {
+  color: var(--color-text-muted);
+  font-size: clamp(0.95rem, 2vw + 0.3rem, 1.05rem);
+}
+
+/* 4. Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.75rem 1.45rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+  color: #FFFFFF;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.98), rgba(16, 185, 129, 0.98));
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #0A0D12;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.45), 0 0 20px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline {
+  background-color: rgba(255, 255, 255, 0.04);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  color: var(--color-text);
+  border: 1px solid var(--color-border-glass);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 18px rgba(16, 185, 129, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background-color: rgba(var(--color-primary-rgb), 0.12);
+  color: var(--color-primary);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* 5. Header y Barra de Navegación */
+.site-header {
+  position: sticky;
+  top: 0.85rem;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0 1rem;
+  background-color: transparent;
+  border-bottom: none;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.site-header .navbar {
+  pointer-events: auto;
+}
+
+.navbar {
+  height: 64px;
+  background-color: rgba(18, 23, 31, 0.68);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--color-border-glass);
+  border-radius: 9999px; /* Encabezado en forma redondeada (píldora ejecutiva) */
+  padding: 0 1.75rem;
+  box-shadow: 0 10px 32px -5px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  background-color: rgba(24, 30, 40, 0.76);
+  box-shadow: 0 12px 38px -5px rgba(0, 0, 0, 0.55), 0 0 25px rgba(16, 185, 129, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.logo span {
+  color: var(--color-primary);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  position: relative;
+  padding: 0.42rem 0.95rem;
+  border-radius: 9999px;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Enlace activo (marcado por main.js) */
+.nav-link.active {
+  color: var(--color-primary);
+  background-color: rgba(var(--color-primary-rgb), 0.12);
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  display: none;
+}
+
+/* Botón Descargar CV en barra de navegación superior */
+.nav-btn-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-nav-cv {
+  padding: 0.42rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  margin-left: 0.4rem;
+  gap: 0.4rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.btn-nav-cv svg {
+  flex-shrink: 0;
+}
+
+/* Botón menú móvil (hamburguesa) */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  z-index: 1001;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+}
+
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  position: relative;
+  transition: var(--transition);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text);
+  left: 0;
+  transition: var(--transition);
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+/* Estado activo del botón hamburguesa (transforma en X) */
+.menu-toggle.active .hamburger {
+  background-color: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.menu-toggle.active .hamburger::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* 6. Footer Compartido */
+.site-footer {
+  background-color: rgba(14, 16, 20, 0.72);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--color-border-glass);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 2.5rem 0;
+  margin-top: auto;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.footer-content p {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer-socials a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: var(--transition);
+}
+
+.footer-socials a:hover {
+  color: var(--color-primary);
+}
+
+.footer-socials a.footer-link-forum {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.footer-socials a.footer-link-forum:hover {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+/* 7. Media Queries de Navegación Móvil */
+@media (max-width: 768px) {
+  .site-header {
+    top: 0.5rem;
+    padding: 0 0.75rem;
+  }
+
+  .navbar {
+    height: 58px;
+    padding: 0 1.25rem;
+    border-radius: 9999px; /* Encabezado redondeado en móviles */
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: calc(58px + 1rem);
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    background-color: rgba(18, 22, 29, 0.88);
+    backdrop-filter: var(--glass-blur-lg);
+    -webkit-backdrop-filter: var(--glass-blur-lg);
+    border: 1px solid var(--color-border-glass);
+    border-radius: 20px; /* Menú móvil redondeado acorde al encabezado */
+    flex-direction: column;
+    padding: 1.5rem 1.25rem;
+    gap: 0.75rem;
+    align-items: stretch;
+    box-shadow: var(--shadow-lg), 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    max-height: calc(100vh - 85px);
+    overflow-y: auto;
+  }
+
+  /* Clase añadida con JS para mostrar el menú */
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    font-size: 1.02rem;
+    width: 100%;
+    display: block;
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius-sm);
+    border-bottom: 1px solid rgba(42, 46, 53, 0.5);
+  }
+
+  .nav-link:hover, .nav-link.active {
+    background-color: rgba(16, 185, 129, 0.08);
+  }
+
+  .nav-link.active::after {
+    display: none; /* En móvil se resalta con fondo sutil */
+  }
+
+  .nav-btn-item {
+    width: 100%;
+    margin-top: 0.35rem;
+  }
+
+  .btn-nav-cv {
+    width: 100%;
+    margin-left: 0;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.92rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+}
+
+/* ==========================================================================
+   7. ASISTENTE ROBOT EJECUTIVO "BUPPY" (Liquid Glass Assistant)
+   ========================================================================== */
+.executive-robot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 90px;
+  height: auto;
+  pointer-events: auto;
+  user-select: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.executive-robot-wrapper {
+  animation: robotLevitate 3.5s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.executive-robot-svg {
+  display: block;
+  width: 90px;
+  height: 115px;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
+}
+
+.executive-robot-shadow {
+  width: 52px;
+  height: 9px;
+  background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.32) 0%, rgba(0, 0, 0, 0.5) 45%, transparent 75%);
+  border-radius: 50%;
+  margin: -6px auto 0 auto;
+  animation: robotShadowPulse 3.5s ease-in-out infinite;
+}
+
+/* Burbuja de diálogo Liquid Glass (Modo Interactivo en forum.html) */
+.executive-robot-bubble {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  right: 0;
+  width: 220px;
+  background: rgba(18, 24, 33, 0.85);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 20px rgba(16, 185, 129, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  animation: robotBubbleFloat 3.5s ease-in-out infinite;
+  pointer-events: auto;
+  z-index: 1000;
+}
+
+.robot-bubble-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.robot-bubble-name {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #10B981;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.robot-bubble-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #9CA3AF;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.robot-bubble-text {
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: #FFFFFF;
+  font-weight: 600;
+  margin: 0;
+}
+
+.robot-bubble-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #10B981;
+  text-decoration: none;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 0.32rem 0.75rem;
+  border-radius: 9999px;
+  transition: var(--transition);
+}
+
+.robot-bubble-link:hover {
+  background: #10B981;
+  color: #0A0D12;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.5);
+  transform: translateY(-1px);
+}
+
+.robot-bubble-tail {
+  position: absolute;
+  bottom: -6px;
+  right: 32px;
+  width: 12px;
+  height: 12px;
+  background: rgba(18, 24, 33, 0.85);
+  border-right: 1px solid rgba(16, 185, 129, 0.35);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.35);
+  transform: rotate(45deg);
+}
+
+@keyframes robotLevitate {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes robotShadowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(0.82);
+    opacity: 0.25;
+  }
+}
+
+@keyframes robotBubbleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Adaptación móvil: ocultar en pantallas menores a 768px */
+@media (max-width: 768px) {
+  .executive-robot-container {
+    display: none !important;
+  }
+}

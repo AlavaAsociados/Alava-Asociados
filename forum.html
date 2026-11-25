@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foro Financiero &amp; Tendencias Empresariales | Abraham Alava</title>
+
+  <!-- Metadatos para SEO y redes sociales -->
+  <meta name="description"
+    content="Portal Editorial de Inteligencia Financiera &amp; Análisis Empresarial - Artículos estratégicos sobre FP&amp;A, mercado de capitales, transformación digital con SAP/BI y optimización de capital de trabajo por Abraham Alava.">
+  <meta name="author" content="Abraham Danny Alava Delgado">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon corporativo en SVG minimalista -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Hojas de estilos nativas -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       HEADER COMPARTIDO CON MENÚ RESPONSIVO
+       ========================================== -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <!-- Logotipo editorial Forum Finance by Abraham Alava -->
+      <a href="forum.html" class="logo forum-brand-logo">
+        <span class="brand-text-forum">Forum</span><span class="brand-text-finance">Finance</span>
+        <span class="brand-author-byline">by Abraham Alava</span>
+      </a>
+
+      <!-- Botón de menú hamburguesa para móviles -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">
+        <span class="hamburger"></span>
+      </button>
+
+      <!-- Menú minimalista editorial -->
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="forum.html" class="nav-link active">Foro</a></li>
+        <li class="nav-btn-item">
+          <a href="index.html" class="btn-pill-profile">
+            <span>Perfil Ejecutivo &#8599;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ==========================================
+       TICKER DE MERCADOS EN VIVO (TRADINGVIEW TAPE)
+       Widget oficial gratuito en tiempo real
+       ========================================== -->
+  <div class="market-tradingview-wrapper" aria-label="Cotizaciones de mercados financieros en tiempo real">
+    <div class="tradingview-widget-container" id="tradingview-ticker-container">
+      <div class="tradingview-widget-container__widget"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       CONTENIDO PRINCIPAL DEL FORO (<main>)
+       Estructura editorial de 2 columnas (70% / 30%)
+       ========================================== -->
+  <main>
+    <section class="section forum-section">
+      <div class="container">
+
+        <!-- Encabezado Ejecutivo del Portal -->
+        <div class="forum-hero-header">
+          <div class="forum-hero-text">
+            <div class="forum-badge-row">
+              <span class="section-tag">EDITORIAL FINANCIERO • ANÁLISIS ESTRATÉGICO</span>
+              <span class="forum-live-date-badge" id="forum-live-date-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span id="live-date-text">Cargando fecha de mercado...</span>
+              </span>
+              <span class="forum-cloud-badge" id="forum-cloud-badge"
+                title="Estado de la base de datos para hilos y comentarios">
+                <span class="cloud-status-dot" id="cloud-status-dot"></span>
+                <span id="cloud-status-text">Base de datos local activa</span>
+              </span>
+            </div>
+            <h1 class="section-title">Foro Financiero &amp; Tendencias Empresariales</h1>
+            <p class="section-description">
+              Espacio de análisis estratégico sobre FP&amp;A, mercados, transformación digital con SAP/BI y gestión
+              corporativa.
+            </p>
+          </div>
+          <div class="forum-hero-cta">
+            <button class="btn btn-primary" id="open-new-thread-modal">
+              <span>+ Nuevo Análisis</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             PULSO FINANCIERO DE ECUADOR EN TIEMPO REAL
+             Widget Automatizado de Noticias & Coyuntura Económica
+             ========================================== -->
+        <section class="ecuador-news-section" aria-label="Pulso Financiero y Noticias Económicas de Ecuador">
+          <div class="ecuador-news-header">
+            <div class="ecuador-news-header-text">
+              <span class="section-tag">RADAR MACROECONÓMICO • MERCADO ECUADOR</span>
+              <h2 class="ecuador-news-title">Pulso Financiero &amp; Mercado Ecuador</h2>
+              <p class="ecuador-news-description">
+                Seguimiento en tiempo real de liquidez bancaria, coyuntura fiscal, tipos de interés y decisiones corporativas en Ecuador.
+              </p>
+            </div>
+            <div class="ecuador-news-badge" id="ecuador-news-status-badge">
+              <span class="news-pulse-dot" id="ecuador-pulse-dot"></span>
+              <span id="ecuador-news-status-text">Actualizando pulso financiero de Ecuador...</span>
+            </div>
+          </div>
+
+          <!-- Cuadrícula de Noticias Liquid Glass (4 - 6 tarjetas) -->
+          <div class="ecuador-news-grid" id="ecuador-news-grid" aria-live="polite">
+            <!-- Renderizado dinámicamente vía fetch con respaldo de análisis ejecutivo -->
+          </div>
+        </section>
+
+        <!-- Barra de Filtros por Categoría (Estilo Pills) -->
+        <div class="forum-filters-wrapper">
+          <div class="filter-pills-bar" id="forum-filter-bar" role="toolbar" aria-label="Filtro de categorías del foro">
+            <button class="filter-pill active" data-category="all">Todos</button>
+            <button class="filter-pill" data-category="FP&amp;A &amp; Estrategia">FP&amp;A &amp; Estrategia</button>
+            <button class="filter-pill" data-category="Riesgos &amp; Liquidez">Riesgos &amp; Liquidez</button>
+            <button class="filter-pill" data-category="Fintech &amp; SAP/BI">Fintech &amp; SAP/BI</button>
+            <button class="filter-pill" data-category="Mercado Bursátil &amp; Riesgos">Mercado Bursátil &amp; Riesgos</button>
+            <button class="filter-pill" data-category="Tendencias 2026">Tendencias 2026</button>
+          </div>
+        </div>
+
+        <!-- Estructura Editorial de 2 Columnas: Principal (70%) + Sidebar (30%) -->
+        <div class="forum-editorial-grid">
+
+          <!-- Columna Principal Izquierda (Feed de Artículos/Hilos) -->
+          <div class="forum-main-feed-col">
+            <div class="forum-feed-container" id="forum-feed" aria-live="polite">
+              <!-- Hilos renderizados dinámicamente mediante js/forum.js -->
+            </div>
+          </div>
+
+          <!-- Barra Lateral Derecha (3 Bloques Compactos) -->
+          <aside class="forum-sidebar" aria-label="Inteligencia y métricas financieras">
+
+            <!-- Bloque 1: Temas Más Debatidos -->
+            <div class="sidebar-card sidebar-trending-card">
+              <div class="sidebar-card-header">
+                <span class="sidebar-card-tag">RANKING EDITORIAL</span>
+                <h3 class="sidebar-card-title">Temas Más Debatidos</h3>
+              </div>
+              <ol class="trending-list" id="trending-threads-list">
+                <!-- Se alimenta dinámicamente desde js/forum.js -->
+              </ol>
+            </div>
+
+            <!-- Bloque 2: Convertidor de Divisas Ejecutivo -->
+            <div class="sidebar-card sidebar-converter-card" id="currency-converter-widget">
+              <div class="sidebar-card-header">
+                <span class="sidebar-card-tag">MERCADOS &amp; DIVISAS</span>
+                <h3 class="sidebar-card-title">Convertidor de Divisas Ejecutivo</h3>
+              </div>
+
+              <div class="converter-form">
+                <!-- Monto a Convertir -->
+                <div class="form-group" style="margin-bottom: 0.85rem;">
+                  <label for="converter-amount" class="converter-label">Monto a Convertir</label>
+                  <input type="number" id="converter-amount" class="form-control converter-input" value="1000" min="0"
+                    step="any" placeholder="1000">
+                </div>
+
+                <!-- Selectores de Divisas e Intercambio -->
+                <div class="converter-selectors-row">
+                  <div class="converter-select-col">
+                    <label for="converter-from" class="converter-label">De:</label>
+                    <select id="converter-from" class="form-control converter-select">
+                      <option value="USD" selected>USD - Dólar (EE.UU.)</option>
+                      <option value="MXN">MXN - Peso Mexicano</option>
+                      <option value="EUR">EUR - Euro</option>
+                      <option value="COP">COP - Peso Colombiano</option>
+                      <option value="PEN">PEN - Sol Peruano</option>
+                      <option value="BRL">BRL - Real Brasileño</option>
+                      <option value="GBP">GBP - Libra Esterlina</option>
+                    </select>
+                  </div>
+
+                  <button type="button" id="converter-swap-btn" class="converter-swap-btn"
+                    aria-label="Intercambiar divisas" title="Intercambiar divisas">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"></path>
+                    </svg>
+                  </button>
+
+                  <div class="converter-select-col">
+                    <label for="converter-to" class="converter-label">A:</label>
+                    <select id="converter-to" class="form-control converter-select">
+                      <option value="USD">USD - Dólar (EE.UU.)</option>
+                      <option value="MXN" selected>MXN - Peso Mexicano</option>
+                      <option value="EUR">EUR - Euro</option>
+                      <option value="COP">COP - Peso Colombiano</option>
+                      <option value="PEN">PEN - Sol Peruano</option>
+                      <option value="BRL">BRL - Real Brasileño</option>
+                      <option value="GBP">GBP - Libra Esterlina</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Resultado de Conversión en Tiempo Real -->
+                <div class="converter-result-box">
+                  <div class="converter-result-main">
+                    <span class="converter-result-val" id="converter-result-value">--</span>
+                    <span class="converter-result-curr" id="converter-result-currency">MXN</span>
+                  </div>
+                  <div class="converter-rate-info">
+                    <span id="converter-rate-unit">Cargando tasa de cambio...</span>
+                    <span class="converter-rate-date" id="converter-rate-timestamp">Conexión a mercado en curso</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bloque 3: Métrica / KPI Destacado -->
+            <div class="sidebar-card sidebar-kpi-card">
+              <div class="sidebar-card-header">
+                <span class="sidebar-card-tag highlight">KPI FINANCIERO DESTACADO</span>
+                <h3 class="sidebar-card-title">Cash Conversion Cycle (CCC)</h3>
+              </div>
+              <div class="kpi-formula-box">
+                <code>CCC = DSO + DIO - DPO</code>
+              </div>
+              <p class="kpi-description">
+                Mide el número de días que toma transformar las salidas de efectivo por adquisiciones de inventario en
+                entradas líquidas por cobranza de facturas.
+              </p>
+              <div class="kpi-takeaway">
+                <span class="kpi-takeaway-label">Impacto Ejecutivo:</span>
+                <p>En coyunturas de tasas de interés restrictivas, reducir el CCC en 5 a 10 días genera liquidez
+                  operativa directa, reduciendo la necesidad de crédito bancario y optimizando el retorno sobre el
+                  capital invertido (ROIC).</p>
+              </div>
+            </div>
+
+            <!-- Bloque 4: Alertas de Análisis -->
+            <div class="sidebar-card sidebar-alerts-card">
+              <div class="sidebar-card-header">
+                <span class="sidebar-card-tag">INFORMES EJECUTIVOS</span>
+                <h3 class="sidebar-card-title">Alertas de Análisis</h3>
+              </div>
+              <p class="alerts-description">
+                Recibe en tu bandeja de entrada los nuevos reportes de modelación financiera, dashboards en Power BI y
+                análisis de coyuntura macroeconómica.
+              </p>
+              <form class="alerts-form" id="newsletter-form" novalidate>
+                <input type="text" name="email_address_check" value="" style="display:none;">
+                <input type="hidden" name="locale" value="es">
+                <div class="form-group" style="margin-bottom: 0.75rem;">
+                  <label for="EMAIL" class="sr-only">Correo electrónico corporativo</label>
+                  <input type="email" name="EMAIL" id="EMAIL" class="form-control" placeholder="ejecutivo@empresa.com"
+                    required>
+                </div>
+                <button type="submit" id="newsletter-submit-btn" class="btn btn-primary"
+                  style="width: 100%; justify-content: center; font-size: 0.88rem; padding: 0.65rem 1rem;">
+                  <span>Suscribirse a Alertas</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+                <div id="newsletter-feedback" class="newsletter-feedback" style="display: none;"></div>
+              </form>
+            </div>
+
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       MODAL: CREAR NUEVO TEMA / ANÁLISIS
+       ========================================== -->
+  <div class="modal-overlay" id="thread-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <span class="modal-tag">NUEVA PUBLICACIÓN</span>
+          <h2 class="modal-title" id="modal-title">Publicar Análisis o Tema de Debate</h2>
+        </div>
+        <button class="modal-close-btn" id="close-modal-btn" aria-label="Cerrar modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="new-thread-form" class="modal-form" novalidate>
+        <!-- Título del Tema -->
+        <div class="form-group">
+          <label for="thread-title-input">Título del Análisis / Discusión *</label>
+          <input type="text" id="thread-title-input" class="form-control"
+            placeholder="Ej: Impacto de la política monetaria en la estructura de deuda corporativa..." required>
+        </div>
+
+        <!-- Categoría y Nombre de Autor en 2 columnas -->
+        <div class="modal-form-row">
+          <div class="form-group">
+            <label for="thread-category-select">Categoría Especializada *</label>
+            <select id="thread-category-select" class="form-control" required>
+              <option value="FP&amp;A &amp; Estrategia">FP&amp;A &amp; Estrategia</option>
+              <option value="Riesgos &amp; Liquidez">Riesgos &amp; Liquidez</option>
+              <option value="Fintech &amp; SAP/BI">Fintech &amp; SAP/BI</option>
+              <option value="Mercado Bursátil &amp; Riesgos">Mercado Bursátil &amp; Riesgos</option>
+              <option value="Tendencias 2026">Tendencias 2026</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="thread-author-input">Nombre del Autor / Cargo *</label>
+            <input type="text" id="thread-author-input" class="form-control"
+              placeholder="Ej: Ing. Roberto Dávila / FP&amp;A Manager" required>
+          </div>
+        </div>
+
+        <!-- Contenido / Cuerpo del análisis -->
+        <div class="form-group">
+          <label for="thread-content-input">Cuerpo del Análisis Financiero *</label>
+          <textarea id="thread-content-input" class="form-control" rows="4"
+            placeholder="Expón los fundamentos técnicos, métricas financieras relevantes (EBITDA, ROIC, Flujo de Caja), impacto operativo..."
+            required></textarea>
+        </div>
+
+        <!-- Conclusión Ejecutiva -->
+        <div class="form-group">
+          <label for="thread-conclusion-input">Conclusión Ejecutiva / Takeaway Estratégico *</label>
+          <textarea id="thread-conclusion-input" class="form-control" rows="2"
+            placeholder="Resumen clave o recomendación directa para la dirección financiera..." required></textarea>
+        </div>
+
+        <!-- Pregunta para el Debate Comunitario -->
+        <div class="form-group">
+          <label for="thread-debate-input">Pregunta para el Debate Comunitario (Opcional)</label>
+          <input type="text" id="thread-debate-input" class="form-control"
+            placeholder="Ej: ¿Qué palancas de optimización consideras más efectivas...?">
+        </div>
+
+        <!-- Alerta de validación en modal -->
+        <div id="modal-feedback" class="modal-feedback" style="display: none;"></div>
+
+        <!-- Acciones del Modal -->
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="cancel-modal-btn">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="submit-thread-btn">
+            <span>Publicar Análisis</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FOOTER COMPARTIDO
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; <span id="current-year"></span> Abraham Danny Alava Delgado. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/abraham-alava-3880532a1/" target="_blank"
+          rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://wa.me/593992666129" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="mailto:alavacop7@outlook.es">Correo</a>
+        <a href="forum.html" target="_blank" rel="noopener noreferrer" class="footer-link-forum">Foro Financiero ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts funcionales nativos -->
+  <script src="js/main.js"></script>
+  <script src="js/forum.js"></script>
+</body>
+
+</html>

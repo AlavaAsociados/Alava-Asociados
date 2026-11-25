@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1D21"/>
+      <stop offset="100%" stop-color="#121417"/>
+    </linearGradient>
+    <linearGradient id="accentEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" rx="10" fill="url(#bg1)"/>
+  <!-- Top bar -->
+  <rect width="600" height="38" rx="10" fill="#22262B"/>
+  <rect y="26" width="600" height="12" fill="#22262B"/>
+  <circle cx="25" cy="19" r="5" fill="#EF4444" opacity="0.8"/>
+  <circle cx="42" cy="19" r="5" fill="#F59E0B" opacity="0.8"/>
+  <circle cx="59" cy="19" r="5" fill="#10B981" opacity="0.8"/>
+  <rect x="85" y="9" width="300" height="20" rx="4" fill="#121417"/>
+  <text x="100" y="23" fill="#A1A1AA" font-family="sans-serif" font-size="11">https://analytics.fintech.local</text>
+  
+  <!-- Tarjetas de métricas -->
+  <rect x="30" y="60" width="160" height="85" rx="6" fill="#1A1D21" stroke="#2A2E35" stroke-width="1"/>
+  <text x="45" y="85" fill="#A1A1AA" font-family="sans-serif" font-size="12">Ventas / P&amp;L</text>
+  <text x="45" y="115" fill="#10B981" font-family="sans-serif" font-size="22" font-weight="bold">$24,580</text>
+  
+  <rect x="210" y="60" width="160" height="85" rx="6" fill="#1A1D21" stroke="#2A2E35" stroke-width="1"/>
+  <text x="225" y="85" fill="#A1A1AA" font-family="sans-serif" font-size="12">EBITDA</text>
+  <text x="225" y="115" fill="#FFFFFF" font-family="sans-serif" font-size="22" font-weight="bold">32.4%</text>
+  
+  <rect x="390" y="60" width="180" height="85" rx="6" fill="#1A1D21" stroke="#2A2E35" stroke-width="1"/>
+  <text x="405" y="85" fill="#A1A1AA" font-family="sans-serif" font-size="12">DSO / Cobranzas</text>
+  <text x="405" y="115" fill="#10B981" font-family="sans-serif" font-size="22" font-weight="bold">42 Días</text>
+
+  <!-- Gráfico sobrio -->
+  <rect x="30" y="165" width="540" height="165" rx="6" fill="#15171B" stroke="#2A2E35" stroke-width="1"/>
+  <path d="M50 290 Q 120 220, 200 240 T 350 200 T 480 220 T 545 180" fill="none" stroke="url(#accentEmerald)" stroke-width="3"/>
+  <circle cx="200" cy="240" r="4" fill="#10B981"/>
+  <circle cx="350" cy="200" r="4" fill="#10B981"/>
+  <circle cx="480" cy="220" r="4" fill="#34D399"/>
+  <circle cx="545" cy="180" r="4" fill="#34D399"/>
+  <text x="50" y="195" fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold">Monitoreo de Indicadores Financieros</text>
+</svg>
