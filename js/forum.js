@@ -294,14 +294,14 @@ document.addEventListener("DOMContentLoaded", () => {
               <p>${escapeHtml(thread.content)}</p>
             </div>
 
-            <!-- Recuadro Resaltado: Conclusión Ejecutiva -->
+            <!-- Recuadro Resaltado: Conclusión -->
             ${
               thread.conclusion
                 ? `
                   <div class="thread-executive-takeaway">
                     <div class="takeaway-header">
                       ${icons.checkTarget}
-                      <span>Conclusión Ejecutiva &amp; Takeaway Estratégico</span>
+                      <span>Conclusión</span>
                     </div>
                     <p class="takeaway-text">${escapeHtml(thread.conclusion)}</p>
                   </div>
@@ -329,10 +329,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <!-- Pie del Hilo y Acciones de Interacción -->
             <footer class="thread-footer">
               <div class="thread-actions-left">
-                <!-- Botón de Recomendación ('Recomendar análisis ▲') -->
+                <!-- Botón de Recomendación ('Recomendar ▲') -->
                 <button class="btn-recommend ${isUpvoted ? "active" : ""}" data-action="upvote" data-id="${thread.id}" aria-label="Recomendar análisis">
                   ${icons.upvote}
-                  <span>Recomendar análisis ▲</span>
+                  <span>Recomendar ▲</span>
                   <span class="vote-count">${thread.upvotes || 0}</span>
                 </button>
 
@@ -755,6 +755,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 10. Modal para Publicar Nuevo Tema / Análisis
   const openModalBtn = document.getElementById("open-new-thread-modal");
+  const openModalBtnSecondary = document.getElementById("open-new-thread-btn-secondary");
   const closeModalBtn = document.getElementById("close-modal-btn");
   const cancelModalBtn = document.getElementById("cancel-modal-btn");
   const modalOverlay = document.getElementById("thread-modal-overlay");
@@ -781,6 +782,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   if (openModalBtn) openModalBtn.addEventListener("click", openModal);
+  if (openModalBtnSecondary) openModalBtnSecondary.addEventListener("click", openModal);
   if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
   if (cancelModalBtn) cancelModalBtn.addEventListener("click", closeModal);
 
@@ -1134,29 +1136,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const pulseDot = document.getElementById("ecuador-pulse-dot");
     if (!newsGrid) return;
 
-    // Análisis ejecutivos fijos de respaldo (Garantizan que la sección nunca esté vacía)
+    // 6 Análisis ejecutivos de respaldo (Garantizan exactamente 6 tarjetas en el grid)
     const fallbackAnalyses = [
       {
-        title: "Liquidez Bancaria & Tasas de Interés en Ecuador: Fondeo Corporativo y Margen de Intermediación",
-        summary: "Evaluación técnica de la evolución de depósitos a plazo y liquidez en dólares en el sistema bancario privado nacional. Las empresas estructuran líneas de tesorería activas ante presiones crediticias.",
+        title: "Liquidez Bancaria y Tasas de Interés en Ecuador",
+        summary: "Evolución de depósitos a plazo y liquidez en dólares en la banca privada ante la demanda de crédito corporativo.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
         link: "forum.html"
       },
       {
-        title: "Coyuntura Macroeconómica & Comercio Exterior: Desempeño Exportador y Cobertura Operativa",
-        summary: "Análisis del ciclo de conversión de efectivo en sectores no petroleros líderes (camarón, banano y manufactura). Las empresas multinacionales ajustan sus días de cobro (DSO) frente a la volatilidad cambiaria regional.",
+        title: "Comercio Exterior y Coyuntura Macroeconómica",
+        summary: "Desempeño exportador en camarón y banano, con ajustes en días de cobro frente a la volatilidad cambiaria regional.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
         link: "forum.html"
       },
       {
-        title: "Mercado de Valores de Guayaquil (BVG): Financiamiento Corporativo mediante Papel Comercial",
-        summary: "La estructuración de obligaciones corporativas a mediano plazo en el mercado bursátil local se consolida como una alternativa competitiva de capital de trabajo frente al crédito bancario tradicional.",
+        title: "Financiamiento Bursátil en la Bolsa de Guayaquil",
+        summary: "Estructuración de papel comercial y obligaciones como alternativa ágil de capital de trabajo corporativo.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
         link: "forum.html"
       },
       {
-        title: "Transformación Digital en Finanzas: Automatización de Conciliación y Flujo de Caja con SAP y BI",
-        summary: "Directores financieros en Ecuador implementan analítica predictiva en Power BI integrada a ERPs para acortar el cierre contable mensual y proteger el margen operativo EBITDA.",
+        title: "Optimización Financiera y Flujo de Caja Corporativo",
+        summary: "Modelación de tesorería y analítica predictiva para proteger el margen operativo y la liquidez empresarial.",
+        date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
+        link: "forum.html"
+      },
+      {
+        title: "Riesgo País y Bonos Soberanos en Ecuador",
+        summary: "Impacto del diferencial de deuda externa y calificación crediticia en el costo de fondeo para emisiones corporativas.",
+        date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
+        link: "forum.html"
+      },
+      {
+        title: "Sueldos, Presupuesto Financiero y Control de Gestión",
+        summary: "Estructuración del presupuesto anual de nómina, control de gastos OPEX y eficiencia del capital de trabajo.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
         link: "forum.html"
       }
@@ -1169,7 +1183,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return `
             <article class="ecuador-news-card">
               <div class="news-card-header">
-                <span class="news-card-tag">Ecuador • Mercado &amp; Economía</span>
+                <span class="news-card-tag">ECUADOR</span>
                 <span class="news-card-date">${escapeHtml(item.date)}</span>
               </div>
               <h3 class="news-card-title">${escapeHtml(item.title)}</h3>
@@ -1185,25 +1199,19 @@ document.addEventListener("DOMContentLoaded", () => {
         .join("");
     };
 
-    // Mostrar estado de carga inicial con esqueletos Liquid Glass
-    newsGrid.innerHTML = `
-      <div class="ecuador-news-card" style="opacity: 0.6; min-height: 160px; justify-content: center; align-items: center;">
-        <span style="color: var(--color-text-muted); font-size: 0.86rem;">Actualizando pulso financiero de Ecuador...</span>
-      </div>
-      <div class="ecuador-news-card" style="opacity: 0.6; min-height: 160px; justify-content: center; align-items: center;">
-        <span style="color: var(--color-text-muted); font-size: 0.86rem;">Actualizando pulso financiero de Ecuador...</span>
-      </div>
-      <div class="ecuador-news-card" style="opacity: 0.6; min-height: 160px; justify-content: center; align-items: center;">
-        <span style="color: var(--color-text-muted); font-size: 0.86rem;">Actualizando pulso financiero de Ecuador...</span>
-      </div>
-    `;
+    // Mostrar estado de carga inicial con 6 esqueletos Liquid Glass (2 filas de 3)
+    newsGrid.innerHTML = Array(6)
+      .fill(
+        `<div class="ecuador-news-card" style="opacity: 0.6; min-height: 140px; justify-content: center; align-items: center;">
+          <span style="color: var(--color-text-muted); font-size: 0.86rem;">Actualizando pulso financiero...</span>
+        </div>`
+      )
+      .join("");
 
-    // Feeds RSS candidatos de Ecuador (ordenados por disponibilidad)
+    // Feeds RSS específicos de economía de Ecuador
     const candidateRssUrls = [
-      "https://www.elcomercio.com/feed/",
-      "https://www.eluniverso.com/arc/outboundfeeds/rss/?outputType=xml",
       "https://www.eluniverso.com/arc/outboundfeeds/rss-subsection/noticias/economia/?outputType=xml",
-      "https://www.primicias.ec/feed/"
+      "https://www.primicias.ec/economia/feed/"
     ];
 
     // Limpiador seguro de etiquetas HTML
@@ -1212,8 +1220,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return (doc.body.textContent || "").replace(/\s+/g, " ").trim();
     };
 
+    // Exclusión explícita de noticias deportivas
+    const sportsKeywords = /f[uú]tbol|liga\b|gol\b|goles|partido|t[eé]cnico|dt\b|selecci[oó]n|campeonato|copa\b|estadio|independiente del valle|barcelona|emelec|jugador|delantero|arquero|entrenador|maradona|messi|champions/i;
+
     // Palabras clave prioritarias para sector financiero, bancario, corporativo y macroeconómico
-    const econKeywords = /econom|financ|banc|dólar|dolar|empresa|corporat|negocio|comerc|invers|mercad|fiscal|sri|tribut|crédit|credit|export|import|salario|deuda|arancel|inflac|pib|recaud|petróleo|petroleo|empleo|kpi/i;
+    const econKeywords = /econom|financ|banc|dólar|dolar|dinero|empresa|corporat|negocio|comerc|invers|mercad|fiscal|sri|tribut|impuest|crédit|credit|export|import|salario|deuda|arancel|inflac|pib|recaud|petróleo|petroleo|empleo|bolsa|bvg|tasa|liquidez|tesorer|dividendo|bonos|utilidad|activo|pasivo|patrimonio|fondeo|inter[eé]s|remuneraci[oó]n|sueldo|presupuesto/i;
 
     let loadedNews = [];
 
@@ -1231,72 +1242,82 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
         if (data.status !== "ok" || !Array.isArray(data.items) || data.items.length === 0) continue;
 
-        const parsedItems = data.items.map((item) => {
-          let dateStr = "Hoy";
-          if (item.pubDate) {
-            try {
-              const d = new Date(item.pubDate.replace(" ", "T"));
-              if (!isNaN(d.getTime())) {
-                dateStr = d.toLocaleDateString("es-EC", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric"
-                });
+        const parsedItems = data.items
+          .map((item) => {
+            let dateStr = "Hoy";
+            if (item.pubDate) {
+              try {
+                const d = new Date(item.pubDate.replace(" ", "T"));
+                if (!isNaN(d.getTime())) {
+                  dateStr = d.toLocaleDateString("es-EC", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric"
+                  });
+                }
+              } catch {
+                dateStr = "Hoy";
               }
-            } catch {
-              dateStr = "Hoy";
             }
+
+            const rawTitle = item.title || "";
+            const rawDesc = item.description || item.content || "";
+            const cleanDesc = stripHtml(rawDesc);
+            const fullText = (rawTitle + " " + cleanDesc).toLowerCase();
+
+            // 1. Excluir explícitamente cualquier artículo que contenga palabras deportivas
+            if (sportsKeywords.test(fullText)) {
+              return null;
+            }
+
+            // 2. Validar pertinencia económica / corporativa
+            const isFromEconFeed = rssUrl.includes("economia");
+            const hasEconKeywords = econKeywords.test(fullText);
+            if (!isFromEconFeed && !hasEconKeywords) {
+              return null;
+            }
+
+            const snippet = cleanDesc.length > 125 ? cleanDesc.slice(0, 122) + "..." : cleanDesc;
+
+            return {
+              title: stripHtml(rawTitle || "Actualidad Financiera"),
+              summary: snippet || "Análisis estratégico y novedades del entorno económico y empresarial en Ecuador.",
+              date: dateStr,
+              link: item.link || "forum.html"
+            };
+          })
+          .filter((n) => n !== null);
+
+        for (const item of parsedItems) {
+          if (!loadedNews.some((existing) => existing.title === item.title)) {
+            loadedNews.push(item);
           }
-
-          const rawDesc = item.description || item.content || "";
-          const cleanDesc = stripHtml(rawDesc);
-          const snippet = cleanDesc.length > 175 ? cleanDesc.slice(0, 172) + "..." : cleanDesc;
-
-          return {
-            title: stripHtml(item.title || "Actualidad Financiera"),
-            summary: snippet || "Análisis estratégico y novedades del entorno económico y empresarial en Ecuador.",
-            date: dateStr,
-            link: item.link || "forum.html",
-            isEconomic: econKeywords.test((item.title || "") + " " + cleanDesc)
-          };
-        });
-
-        // Filtrar y ordenar priorizando las más económicas/financieras
-        const priorityNews = parsedItems.filter((n) => n.isEconomic);
-        const generalNews = parsedItems.filter((n) => !n.isEconomic);
-        const sortedNews = [...priorityNews, ...generalNews];
-
-        if (sortedNews.length > 0) {
-          loadedNews = sortedNews.slice(0, 6);
-          break; // Primer feed exitoso
+          if (loadedNews.length >= 6) break;
         }
+
+        if (loadedNews.length >= 6) break;
       } catch (err) {
         console.warn(`Consulta a feed RSS no disponible (${rssUrl}), probando alternativa o respaldo:`, err);
       }
     }
 
-    // Renderizar con respaldo si hay menos de 4
-    if (loadedNews.length >= 4) {
-      renderNewsCards(loadedNews);
+    // Relleno automático a exactamente 6 tarjetas completas en el grid
+    const remainingNeeded = Math.max(0, 6 - loadedNews.length);
+    const finalNewsCards = [...loadedNews.slice(0, 6), ...fallbackAnalyses.slice(0, remainingNeeded)];
+
+    renderNewsCards(finalNewsCards);
+
+    if (loadedNews.length > 0) {
       if (statusText) {
         const nowTime = new Date().toLocaleTimeString("es-EC", { hour: "2-digit", minute: "2-digit" });
-        statusText.textContent = `Pulso en Vivo: Actualizado ${nowTime}`;
+        statusText.textContent = `Pulso en Vivo • ${nowTime}`;
       }
       if (pulseDot) {
         pulseDot.style.backgroundColor = "#10B981";
       }
-    } else if (loadedNews.length > 0) {
-      // Combinar noticias en vivo con los análisis de respaldo para completar mínimo 4
-      const combined = [...loadedNews, ...fallbackAnalyses.slice(0, Math.max(2, 6 - loadedNews.length))];
-      renderNewsCards(combined);
-      if (statusText) {
-        statusText.textContent = "Pulso en Vivo: Noticias & Análisis Estratégico";
-      }
     } else {
-      // Fallback total activo (Mantiene siempre visibles los análisis ejecutivos de respaldo)
-      renderNewsCards(fallbackAnalyses);
       if (statusText) {
-        statusText.textContent = "Pulso Financiero: Análisis Ejecutivo de Respaldo Activo";
+        statusText.textContent = "Pulso en Vivo";
       }
       if (pulseDot) {
         pulseDot.style.animation = "none";

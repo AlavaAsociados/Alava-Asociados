@@ -71,26 +71,9 @@
         <!-- Encabezado Ejecutivo del Portal -->
         <div class="forum-hero-header">
           <div class="forum-hero-text">
-            <div class="forum-badge-row">
-              <span class="section-tag">EDITORIAL FINANCIERO • ANÁLISIS ESTRATÉGICO</span>
-              <span class="forum-live-date-badge" id="forum-live-date-badge">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span id="live-date-text">Cargando fecha de mercado...</span>
-              </span>
-              <span class="forum-cloud-badge" id="forum-cloud-badge"
-                title="Estado de la base de datos para hilos y comentarios">
-                <span class="cloud-status-dot" id="cloud-status-dot"></span>
-                <span id="cloud-status-text">Base de datos local activa</span>
-              </span>
-            </div>
             <h1 class="section-title">Foro Financiero &amp; Tendencias Empresariales</h1>
             <p class="section-description">
-              Espacio de análisis estratégico sobre FP&amp;A, mercados, transformación digital con SAP/BI y gestión
-              corporativa.
+              Análisis económico, banca, mercados y gestión financiera.
             </p>
           </div>
           <div class="forum-hero-cta">
@@ -107,23 +90,35 @@
         <section class="ecuador-news-section" aria-label="Pulso Financiero y Noticias Económicas de Ecuador">
           <div class="ecuador-news-header">
             <div class="ecuador-news-header-text">
-              <span class="section-tag">RADAR MACROECONÓMICO • MERCADO ECUADOR</span>
               <h2 class="ecuador-news-title">Pulso Financiero &amp; Mercado Ecuador</h2>
-              <p class="ecuador-news-description">
-                Seguimiento en tiempo real de liquidez bancaria, coyuntura fiscal, tipos de interés y decisiones corporativas en Ecuador.
-              </p>
             </div>
             <div class="ecuador-news-badge" id="ecuador-news-status-badge">
               <span class="news-pulse-dot" id="ecuador-pulse-dot"></span>
-              <span id="ecuador-news-status-text">Actualizando pulso financiero de Ecuador...</span>
+              <span id="ecuador-news-status-text">Pulso en Vivo</span>
             </div>
           </div>
 
-          <!-- Cuadrícula de Noticias Liquid Glass (4 - 6 tarjetas) -->
+          <!-- Cuadrícula de Noticias Liquid Glass (6 tarjetas completas en 2 filas de 3) -->
           <div class="ecuador-news-grid" id="ecuador-news-grid" aria-live="polite">
             <!-- Renderizado dinámicamente vía fetch con respaldo de análisis ejecutivo -->
           </div>
         </section>
+
+        <!-- Separador y Encabezado de la Zona de Discusión Ejecutiva -->
+        <div class="forum-debate-transition">
+          <div class="forum-debate-header">
+            <div class="forum-debate-header-text">
+              <h2 class="forum-debate-title">Análisis &amp; Debate Ejecutivo</h2>
+              <p class="forum-debate-subtitle">Publicaciones de análisis financiero y discusión entre profesionales.</p>
+            </div>
+            <div class="forum-debate-header-action">
+              <button type="button" class="btn-secondary-glass" id="open-new-thread-btn-secondary"
+                aria-label="Publicar aporte en el foro">
+                <span>+ Publicar Aporte</span>
+              </button>
+            </div>
+          </div>
+        </div>
 
         <!-- Barra de Filtros por Categoría (Estilo Pills) -->
         <div class="forum-filters-wrapper">
@@ -132,7 +127,8 @@
             <button class="filter-pill" data-category="FP&amp;A &amp; Estrategia">FP&amp;A &amp; Estrategia</button>
             <button class="filter-pill" data-category="Riesgos &amp; Liquidez">Riesgos &amp; Liquidez</button>
             <button class="filter-pill" data-category="Fintech &amp; SAP/BI">Fintech &amp; SAP/BI</button>
-            <button class="filter-pill" data-category="Mercado Bursátil &amp; Riesgos">Mercado Bursátil &amp; Riesgos</button>
+            <button class="filter-pill" data-category="Mercado Bursátil &amp; Riesgos">Mercado Bursátil &amp;
+              Riesgos</button>
             <button class="filter-pill" data-category="Tendencias 2026">Tendencias 2026</button>
           </div>
         </div>
@@ -153,7 +149,6 @@
             <!-- Bloque 1: Temas Más Debatidos -->
             <div class="sidebar-card sidebar-trending-card">
               <div class="sidebar-card-header">
-                <span class="sidebar-card-tag">RANKING EDITORIAL</span>
                 <h3 class="sidebar-card-title">Temas Más Debatidos</h3>
               </div>
               <ol class="trending-list" id="trending-threads-list">
@@ -161,17 +156,16 @@
               </ol>
             </div>
 
-            <!-- Bloque 2: Convertidor de Divisas Ejecutivo -->
+            <!-- Bloque 2: Convertidor de Divisas -->
             <div class="sidebar-card sidebar-converter-card" id="currency-converter-widget">
               <div class="sidebar-card-header">
-                <span class="sidebar-card-tag">MERCADOS &amp; DIVISAS</span>
-                <h3 class="sidebar-card-title">Convertidor de Divisas Ejecutivo</h3>
+                <h3 class="sidebar-card-title">Convertidor de Divisas</h3>
               </div>
 
               <div class="converter-form">
                 <!-- Monto a Convertir -->
                 <div class="form-group" style="margin-bottom: 0.85rem;">
-                  <label for="converter-amount" class="converter-label">Monto a Convertir</label>
+                  <label for="converter-amount" class="converter-label">Monto</label>
                   <input type="number" id="converter-amount" class="form-control converter-input" value="1000" min="0"
                     step="any" placeholder="1000">
                 </div>
@@ -230,33 +224,28 @@
             <!-- Bloque 3: Métrica / KPI Destacado -->
             <div class="sidebar-card sidebar-kpi-card">
               <div class="sidebar-card-header">
-                <span class="sidebar-card-tag highlight">KPI FINANCIERO DESTACADO</span>
-                <h3 class="sidebar-card-title">Cash Conversion Cycle (CCC)</h3>
+                <h3 class="sidebar-card-title">Ciclo de Conversión de Efectivo (CCC)</h3>
               </div>
               <div class="kpi-formula-box">
                 <code>CCC = DSO + DIO - DPO</code>
               </div>
               <p class="kpi-description">
-                Mide el número de días que toma transformar las salidas de efectivo por adquisiciones de inventario en
-                entradas líquidas por cobranza de facturas.
+                Días que toma transformar inventarios y cuentas por cobrar en efectivo líquido.
               </p>
               <div class="kpi-takeaway">
-                <span class="kpi-takeaway-label">Impacto Ejecutivo:</span>
-                <p>En coyunturas de tasas de interés restrictivas, reducir el CCC en 5 a 10 días genera liquidez
-                  operativa directa, reduciendo la necesidad de crédito bancario y optimizando el retorno sobre el
-                  capital invertido (ROIC).</p>
+                <span class="kpi-takeaway-label">Impacto:</span>
+                <p>Reducir el ciclo de 5 a 10 días genera liquidez operativa directa y optimiza el ROIC sin deuda
+                  bancaria.</p>
               </div>
             </div>
 
             <!-- Bloque 4: Alertas de Análisis -->
             <div class="sidebar-card sidebar-alerts-card">
               <div class="sidebar-card-header">
-                <span class="sidebar-card-tag">INFORMES EJECUTIVOS</span>
                 <h3 class="sidebar-card-title">Alertas de Análisis</h3>
               </div>
               <p class="alerts-description">
-                Recibe en tu bandeja de entrada los nuevos reportes de modelación financiera, dashboards en Power BI y
-                análisis de coyuntura macroeconómica.
+                Recibe análisis de mercado y modelos financieros directamente en tu correo.
               </p>
               <form class="alerts-form" id="newsletter-form" novalidate>
                 <input type="text" name="email_address_check" value="" style="display:none;">
@@ -277,6 +266,44 @@
                 </button>
                 <div id="newsletter-feedback" class="newsletter-feedback" style="display: none;"></div>
               </form>
+            </div>
+
+            <!-- Bloque 5: Referencia de Mercado (TradingView Mini Chart) -->
+            <div class="sidebar-card sidebar-market-card">
+              <div class="sidebar-card-header sidebar-market-header">
+                <div>
+                  <span class="sidebar-card-tag highlight">PETRÓLEO WTI • MERCADO GLOBAL</span>
+                  <h3 class="sidebar-card-title">Referencia de Mercado</h3>
+                </div>
+                <span class="market-live-badge">
+                  <span class="market-live-dot" aria-hidden="true"></span> En vivo
+                </span>
+              </div>
+              <div class="market-chart-wrapper">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container" style="width: 100%; height: 220px;">
+                  <div class="tradingview-widget-container__widget"></div>
+                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                  {
+                    "symbol": "TVC:USOIL",
+                    "width": "100%",
+                    "height": 220,
+                    "locale": "es",
+                    "dateRange": "12M",
+                    "colorTheme": "dark",
+                    "isTransparent": true,
+                    "autosize": false,
+                    "largeChartUrl": "",
+                    "chartOnly": false,
+                    "noTimeScale": false,
+                    "trendLineColor": "rgba(16, 185, 129, 1)",
+                    "underLineColor": "rgba(16, 185, 129, 0.15)",
+                    "underLineBottomColor": "rgba(16, 185, 129, 0)"
+                  }
+                  </script>
+                </div>
+                <!-- TradingView Widget END -->
+              </div>
             </div>
 
           </aside>
