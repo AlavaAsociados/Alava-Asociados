@@ -1165,60 +1165,87 @@ document.addEventListener("DOMContentLoaded", () => {
     const pulseDot = document.getElementById("ecuador-pulse-dot");
     if (!newsGrid) return;
 
-    // 6 Análisis ejecutivos de respaldo (Garantizan exactamente 6 tarjetas en el grid)
+    // Delegación de eventos para navegación en nueva pestaña al interactuar con toda la tarjeta
+    newsGrid.addEventListener("click", (e) => {
+      const card = e.target.closest(".ecuador-news-card");
+      if (!card) return;
+      if (e.target.closest("a")) return; // Si el clic fue en un enlace nativo, el navegador gestiona target="_blank"
+      const targetUrl = card.getAttribute("href");
+      if (targetUrl && targetUrl.startsWith("http")) {
+        window.open(targetUrl, "_blank", "noopener,noreferrer");
+      }
+    });
+
+    newsGrid.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const card = e.target.closest(".ecuador-news-card");
+        if (!card || e.target.closest("a")) return;
+        const targetUrl = card.getAttribute("href");
+        if (targetUrl && targetUrl.startsWith("http")) {
+          window.open(targetUrl, "_blank", "noopener,noreferrer");
+        }
+      }
+    });
+
+    // 6 Análisis ejecutivos de respaldo con enlaces reales a portales económicos oficiales de Ecuador
     const fallbackAnalyses = [
       {
         title: "Liquidez Bancaria y Tasas de Interés en Ecuador",
         summary: "Evolución de depósitos a plazo y liquidez en dólares en la banca privada ante la demanda de crédito corporativo.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
-        link: "forum.html"
+        link: "https://www.superbancos.gob.ec/"
       },
       {
         title: "Comercio Exterior y Coyuntura Macroeconómica",
         summary: "Desempeño exportador en camarón y banano, con ajustes en días de cobro frente a la volatilidad cambiaria regional.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
-        link: "forum.html"
+        link: "https://www.bce.fin.ec/"
       },
       {
         title: "Financiamiento Bursátil en la Bolsa de Guayaquil",
         summary: "Estructuración de papel comercial y obligaciones como alternativa ágil de capital de trabajo corporativo.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
-        link: "forum.html"
+        link: "https://www.bolsadevaloresguayaquil.com/"
       },
       {
         title: "Optimización Financiera y Flujo de Caja Corporativo",
         summary: "Modelación de tesorería y analítica predictiva para proteger el margen operativo y la liquidez empresarial.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
-        link: "forum.html"
+        link: "https://www.ekosnegocios.com/"
       },
       {
         title: "Riesgo País y Bonos Soberanos en Ecuador",
         summary: "Impacto del diferencial de deuda externa y calificación crediticia en el costo de fondeo para emisiones corporativas.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
-        link: "forum.html"
+        link: "https://www.primicias.ec/economia/"
       },
       {
         title: "Sueldos, Presupuesto Financiero y Control de Gestión",
         summary: "Estructuración del presupuesto anual de nómina, control de gastos OPEX y eficiencia del capital de trabajo.",
         date: new Date().toLocaleDateString("es-EC", { day: "numeric", month: "short", year: "numeric" }),
-        link: "forum.html"
+        link: "https://www.eluniverso.com/noticias/economia/"
       }
     ];
 
-    // Función de renderizado de tarjetas Liquid Glass
+    // Función de renderizado de tarjetas Liquid Glass con atributos href y target="_blank"
     const renderNewsCards = (cardsList) => {
       newsGrid.innerHTML = cardsList
         .map((item) => {
+          const safeLink = escapeHtml(item.link || "https://www.primicias.ec/economia/");
           return `
-            <article class="ecuador-news-card">
+            <article class="ecuador-news-card" href="${safeLink}" target="_blank" rel="noopener noreferrer" role="link" tabindex="0">
               <div class="news-card-header">
                 <span class="news-card-tag">ECUADOR</span>
                 <span class="news-card-date">${escapeHtml(item.date)}</span>
               </div>
-              <h3 class="news-card-title">${escapeHtml(item.title)}</h3>
+              <h3 class="news-card-title">
+                <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="news-card-title-link">
+                  ${escapeHtml(item.title)}
+                </a>
+              </h3>
               <p class="news-card-summary">${escapeHtml(item.summary)}</p>
               <div class="news-card-footer">
-                <a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer" class="news-card-link">
+                <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="news-card-link">
                   <span>Leer análisis completo &#8599;</span>
                 </a>
               </div>
@@ -1237,10 +1264,10 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .join("");
 
-    // Feeds RSS específicos de economía de Ecuador
+    // Feeds RSS específicos de economía de Ecuador (Primicias prioritario, El Universo respaldo)
     const candidateRssUrls = [
-      "https://www.eluniverso.com/arc/outboundfeeds/rss-subsection/noticias/economia/?outputType=xml",
-      "https://www.primicias.ec/economia/feed/"
+      "https://www.primicias.ec/economia/feed/",
+      "https://www.eluniverso.com/arc/outboundfeeds/rss-subsection/noticias/economia/?outputType=xml"
     ];
 
     // Limpiador seguro de etiquetas HTML
@@ -1307,12 +1334,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const snippet = cleanDesc.length > 125 ? cleanDesc.slice(0, 122) + "..." : cleanDesc;
+            const validLink = (typeof item.link === "string" && item.link.trim().startsWith("http"))
+              ? item.link.trim()
+              : "https://www.primicias.ec/economia/";
 
             return {
               title: stripHtml(rawTitle || "Actualidad Financiera"),
               summary: snippet || "Análisis estratégico y novedades del entorno económico y empresarial en Ecuador.",
               date: dateStr,
-              link: item.link || "forum.html"
+              link: validLink
             };
           })
           .filter((n) => n !== null);
